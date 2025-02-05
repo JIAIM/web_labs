@@ -9,6 +9,7 @@ import (
 	"strconv"
 )
 
+// Простий шаблон сторінки калькулятора
 var tmpl = template.Must(template.New("calc").Parse(`
 <!DOCTYPE html>
 <html lang="ru">
@@ -80,6 +81,7 @@ var tmpl = template.Must(template.New("calc").Parse(`
 </html>
 `))
 
+// Основна ф-ія програми
 func calcHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
 		// Дані про компоненти палива
@@ -99,7 +101,7 @@ func calcHandler(w http.ResponseWriter, r *http.Request) {
 		W2, err13 := strconv.ParseFloat(r.FormValue("W2"), 64)
 		A, err14 := strconv.ParseFloat(r.FormValue("A"), 64)
 		Vg, err15 := strconv.ParseFloat(r.FormValue("Vg"), 64)
-
+		// Обробка помилок
 		errors := []error{err1, err2, err3, err4, err5, err6, err7, err8, err9, err10, err11, err12, err13, err14, err15}
 
 		for _, err := range errors {
